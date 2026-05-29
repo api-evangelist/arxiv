@@ -1,0 +1,47 @@
+apiVersion: naftiko.dev/v1alpha1
+kind: CapabilityWorkflow
+metadata:
+  name: research-discovery
+  description: |
+    Compose arXiv's query and OAI-PMH capabilities into a research-discovery
+    workflow: keyword search, paginate results, hydrate metadata, and
+    optionally backfill a topic via incremental OAI-PMH harvest.
+  labels:
+    provider: arxiv
+    workflow: research-discovery
+spec:
+  capabilities:
+    - ref: arxiv-query
+    - ref: arxiv-oaipmh
+  steps:
+    - id: search
+      capability: arxiv-query
+      operation: queryArticles
+      input:
+        search_query: "{{ topic.queryExpression }}"
+        sortBy: submittedDate
+        sortOrder: descending
+        max_results: 50
+    - id: paginate
+      capability: arxiv-query
+      operation: queryArticles
+      loopUntil: totalResults
+      input:
+        start: "{{ previous.startIndex + previous.itemsPerPage }}"
+        max_results: 50
+    - id: backfill
+      optional: true
+      capability: arxiv-oaipmh
+      operation: oaiVerb
+      input:
+        verb: ListRecords
+        metadataPrefix: arXiv
+        set: "{{ topic.setSpec }}"
+        from: "{{ topic.lastHarvest }}"
+  policy:
+    pacing:
+      minIntervalSeconds: 3
+      reason: Comply with arXiv's documented one-request-per-three-seconds limit.
+    attribution:
+      required: true
+      text: "Thank you to arXiv for use of its open access interoperability."

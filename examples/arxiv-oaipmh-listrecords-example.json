@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://oaipmh.arxiv.org/oai?verb=ListRecords&metadataPrefix=arXiv&set=cs&from=2026-05-01",
+    "headers": {
+      "Accept": "text/xml",
+      "User-Agent": "api-evangelist-profile/1.0 (mailto:kin@apievangelist.com)"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/xml",
+    "summary": "OAI-PMH ListRecords response in arXiv metadata format. Truncated for documentation purposes.",
+    "records": [
+      {
+        "header": {
+          "identifier": "oai:arXiv.org:2505.09876",
+          "datestamp": "2026-05-15",
+          "setSpec": ["cs", "cs:cs:AI"]
+        },
+        "metadata": {
+          "id": "2505.09876",
+          "created": "2026-05-15",
+          "updated": "2026-05-15",
+          "authors": [
+            { "keyname": "Researcher", "forenames": "Jane Q." }
+          ],
+          "title": "Sparse Mixture-of-Experts Transformer for Long-Horizon Planning",
+          "categories": ["cs.AI", "cs.LG"],
+          "abstract": "We propose a sparse mixture-of-experts transformer architecture...",
+          "license": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      }
+    ],
+    "resumptionToken": "MTIzNDU2Nzg5MA==|2026-05-15|cs|arXiv"
+  }
+}

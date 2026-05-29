@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/arxiv/json-schema/arxiv-article-schema.json",
+  "title": "Article",
+  "description": "An arXiv article (e-print) as exposed by the arXiv Query API Atom feed and the OAI-PMH `arXiv` metadata format.",
+  "type": "object",
+  "required": ["id", "title", "summary", "authors", "primary_category", "published"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical abstract URL, e.g. http://arxiv.org/abs/2401.12345"
+    },
+    "arxiv_id": {
+      "type": "string",
+      "description": "Bare arXiv identifier, e.g. 2401.12345",
+      "pattern": "^[0-9]{4}\\.[0-9]{4,5}(v[0-9]+)?$|^[a-z\\-]+/[0-9]{7}(v[0-9]+)?$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Abstract text"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission date of version 1"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission date of the retrieved version"
+    },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string" },
+          "affiliation": { "type": "string" }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "All arXiv / ACM / MSC subject classifications attached to the article"
+    },
+    "primary_category": {
+      "type": "string",
+      "description": "Primary arXiv subject classification (e.g. cs.AI, hep-th)"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Author-supplied comments"
+    },
+    "journal_ref": {
+      "type": "string",
+      "description": "Bibliographic reference for an associated published version"
+    },
+    "doi": {
+      "type": "string",
+      "description": "DOI for the version of record, if known"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "href": { "type": "string", "format": "uri" },
+          "rel": { "type": "string" },
+          "type": { "type": "string" },
+          "title": {
+            "type": "string",
+            "enum": ["abstract", "pdf", "doi"]
+          }
+        }
+      }
+    },
+    "license": {
+      "type": "string",
+      "format": "uri",
+      "description": "Declared license URL for the e-print (OAI-PMH `arXiv` format)"
+    }
+  }
+}

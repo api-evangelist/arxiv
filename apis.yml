@@ -1,32 +1,250 @@
 aid: arxiv
 name: arXiv
-description: "Curated research-sharing platform: physics, mathematics, quantitative finance, and economics"
-url: https://arxiv.org/help/api/user-manual
+description: >-
+  arXiv is the open-access e-print repository operated by Cornell Tech, hosting
+  more than two million preprints across physics, mathematics, computer science,
+  quantitative biology, quantitative finance, statistics, electrical
+  engineering, and economics. arXiv exposes two principal programmatic
+  interfaces: a REST Query API that returns Atom 1.0 XML and an OAI-PMH v2.0
+  endpoint for bulk metadata harvesting, plus daily RSS feeds and Amazon S3 /
+  Kaggle distributions for full-text corpora.
+url: https://info.arxiv.org/help/api/index.html
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-29'
 x-source: public-apis/public-apis
-x-category: "Science & Math"
-x-tier: 3
-x-tier-reason: bulk-registered-from-public-apis
+x-type: opensource
+x-category: Science & Math
+x-tier: 1
+x-tier-reason: Cornell-operated open scholarship infrastructure with multiple long-lived public APIs.
 tags:
   - Science And Math
+  - Scholarly Publishing
+  - Preprints
+  - Open Access
+  - Research
+  - Open Source
   - Public APIs
 apis:
-  - name: arXiv
-    description: "Curated research-sharing platform: physics, mathematics, quantitative finance, and economics"
-    humanURL: https://arxiv.org/help/api/user-manual
-    baseURL: https://arxiv.org/help/api/user-manual
+  - name: arXiv Query API
+    description: >-
+      REST endpoint for searching arXiv and retrieving article metadata.
+      Supports field-prefix queries (ti, au, abs, co, jr, cat, rn, id, all),
+      AND/OR/ANDNOT operators, phrase grouping, and date-range filters on
+      submittedDate and lastUpdatedDate. Responses are Atom 1.0 XML with
+      arXiv and OpenSearch extensions.
+    humanURL: https://info.arxiv.org/help/api/user-manual.html
+    baseURL: https://export.arxiv.org/api/query
     tags:
       - Science And Math
+      - Scholarly Publishing
     properties:
       - type: Documentation
-        url: https://arxiv.org/help/api/user-manual
+        url: https://info.arxiv.org/help/api/user-manual.html
+      - type: APIReference
+        url: https://info.arxiv.org/help/api/user-manual.html#_calling_the_api
+      - type: GettingStarted
+        url: https://info.arxiv.org/help/api/basics.html
+      - type: OpenAPI
+        url: openapi/arxiv-query-openapi.yml
+      - type: JSONSchema
+        url: json-schema/arxiv-article-schema.json
+        title: Article
+      - type: JSONStructure
+        url: json-structure/arxiv-article-structure.json
+        title: Article
+      - type: Example
+        url: examples/arxiv-query-articles-example.json
+        title: Query Articles Example
+      - type: SDK
+        url: https://pypi.org/project/arxiv/
+        title: Python SDK (lukasschwab/arxiv.py)
+  - name: arXiv OAI-PMH API
+    description: >-
+      Open Archives Initiative Protocol for Metadata Harvesting v2.0 endpoint
+      for bulk-syncing arXiv metadata. Supports Identify, ListSets,
+      ListMetadataFormats, ListRecords, ListIdentifiers, and GetRecord with
+      oai_dc, arXiv, and arXivRaw metadata formats. Metadata refreshes ~10:30pm
+      ET Sunday-Thursday.
+    humanURL: https://info.arxiv.org/help/oa/index.html
+    baseURL: https://oaipmh.arxiv.org/oai
+    tags:
+      - Scholarly Publishing
+      - Bulk Data
+    properties:
+      - type: Documentation
+        url: https://info.arxiv.org/help/oa/index.html
+      - type: OpenAPI
+        url: openapi/arxiv-oaipmh-openapi.yml
+      - type: Example
+        url: examples/arxiv-oaipmh-listrecords-example.json
+        title: List Records Example
+  - name: arXiv RSS Feeds
+    description: >-
+      Daily RSS feeds of new arXiv submissions, organised by archive and
+      subject category. Primarily intended for human consumption; the OAI-PMH
+      and query APIs are recommended for machine integration.
+    humanURL: https://info.arxiv.org/help/rss.html
+    baseURL: https://rss.arxiv.org
+    tags:
+      - Scholarly Publishing
+      - Feeds
+    properties:
+      - type: Documentation
+        url: https://info.arxiv.org/help/rss.html
+  - name: arXiv Bulk Data
+    description: >-
+      Full-text and source bulk distribution channels: an Amazon S3
+      Requester-Pays bucket containing every arXiv PDF and source archive, plus
+      a periodically refreshed Kaggle dataset of the complete metadata corpus.
+    humanURL: https://info.arxiv.org/help/bulk_data.html
+    baseURL: https://info.arxiv.org/help/bulk_data_s3.html
+    tags:
+      - Bulk Data
+      - Open Data
+    properties:
+      - type: Documentation
+        url: https://info.arxiv.org/help/bulk_data.html
+      - type: Resources
+        url: https://info.arxiv.org/help/bulk_data_s3.html
+        title: Amazon S3 Bulk Buckets
+      - type: Resources
+        url: https://www.kaggle.com/datasets/Cornell-University/arxiv
+        title: Kaggle arXiv Dataset
 common:
   - type: Website
-    url: https://arxiv.org/help/api/user-manual
+    url: https://arxiv.org
+  - type: DeveloperPortal
+    url: https://info.arxiv.org/help/api/index.html
+  - type: Documentation
+    url: https://info.arxiv.org/help/api/user-manual.html
+  - type: TermsOfService
+    url: https://info.arxiv.org/help/api/tou.html
+  - type: PrivacyPolicy
+    url: https://info.arxiv.org/help/policies/privacy_policy.html
+  - type: StatusPage
+    url: https://status.arxiv.org/
+  - type: Blog
+    url: https://blog.arxiv.org/
+  - type: Support
+    url: https://info.arxiv.org/help/contact.html
+  - type: GitHubOrganization
+    url: https://github.com/arXiv
+  - type: ChangeLog
+    url: https://github.com/arXiv/arxiv-docs/commits/develop
+  - type: Plans
+    url: plans/arxiv-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/arxiv-rate-limits.yml
+  - type: SpectralRules
+    url: rules/arxiv-rules.yml
+  - type: Vocabulary
+    url: vocabulary/arxiv-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/arxiv-context.jsonld
+    title: arXiv JSON-LD Context
+  - type: NaftikoCapability
+    url: capabilities/shared/arxiv-query.yaml
+    title: Query Capability
+  - type: NaftikoCapability
+    url: capabilities/shared/arxiv-oaipmh.yaml
+    title: OAI-PMH Capability
+  - type: NaftikoCapability
+    url: capabilities/research-discovery.yaml
+    title: Research Discovery Workflow
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: Tools
+    url: https://github.com/blazickjp/arxiv-mcp-server
+    title: arXiv MCP Server (blazickjp)
+  - type: Tools
+    url: https://github.com/shoumikdc/arXiv-mcp
+    title: arXiv MCP (shoumikdc)
+  - type: Tools
+    url: https://github.com/Tejas242/arxiv-mcp
+    title: arXiv MCP (Tejas242)
+  - type: Tools
+    url: https://github.com/glaforge/arxiv-mcp-server
+    title: arXiv MCP Server in Java (glaforge)
+  - type: Tools
+    url: https://github.com/kelvingao/arxiv-mcp
+    title: arXiv MCP (kelvingao)
+  - type: SDK
+    url: https://pypi.org/project/arxiv/
+    title: arxiv Python wrapper (lukasschwab/arxiv.py)
+  - type: SDK
+    url: https://github.com/titipata/arxivpy
+    title: arxivpy Python client (titipata/arxivpy)
+  - type: GitHubRepository
+    url: https://github.com/arXiv/arxiv-search
+    title: arxiv-search (Search UI and APIs)
+  - type: GitHubRepository
+    url: https://github.com/arXiv/oaipmh
+    title: oaipmh (OAI-PMH service)
+  - type: GitHubRepository
+    url: https://github.com/arXiv/arxiv-feed
+    title: arxiv-feed (Atom and RSS service)
+  - type: GitHubRepository
+    url: https://github.com/arXiv/arxiv-canonical
+    title: arxiv-canonical (JSON schema for arXiv metadata)
+  - type: Features
+    data:
+      - name: Field-Prefix Search
+        description: Targeted search across title, author, abstract, comment, journal reference, category, report number, and ID.
+      - name: Boolean Query Composition
+        description: AND, OR, and ANDNOT operators with phrase grouping and parentheses.
+      - name: Date-Range Filtering
+        description: submittedDate and lastUpdatedDate ranges in UTC.
+      - name: Sort Control
+        description: Sort by relevance, lastUpdatedDate, or submittedDate, ascending or descending.
+      - name: ID-Lookup Mode
+        description: Fetch metadata for an explicit comma-separated list of arXiv IDs.
+      - name: OAI-PMH Bulk Harvest
+        description: Industry-standard metadata harvesting with resumption tokens and incremental from-date queries.
+      - name: Three Metadata Formats
+        description: oai_dc, arXiv, and arXivRaw exposed via OAI-PMH.
+      - name: Bulk Full-Text
+        description: Amazon S3 Requester-Pays buckets and periodic Kaggle dataset.
+      - name: Open Source Stack
+        description: arXiv operates its services from a public GitHub organization (arXiv) with 50+ active repositories.
+  - type: UseCases
+    data:
+      - name: Research Discovery Tools
+        description: Build search and recommendation interfaces over the arXiv corpus.
+      - name: Citation And Bibliographic Apps
+        description: Pull metadata, DOIs, and journal references for reference managers.
+      - name: AI Training And RAG
+        description: Build domain corpora for retrieval-augmented generation across scientific literature.
+      - name: Topic Watching And Alerts
+        description: Schedule incremental harvests and notify users of new submissions in a category.
+      - name: Bibliometrics And Trend Analysis
+        description: Aggregate metadata to study research trends, author networks, and category growth.
+      - name: Academic Workflow Integration
+        description: Embed arXiv search into LaTeX editors, IDEs, note-taking tools, and chat assistants via MCP.
+  - type: Integrations
+    data:
+      - name: Semantic Scholar
+        description: Citation graph and paper-similarity overlay used by community tooling.
+      - name: NASA ADS
+        description: Cross-references and bibliography overlay used in arXiv-bib-overlay.
+      - name: DOI / CrossRef
+        description: Articles surface DOIs once a publisher version of record exists.
+      - name: Amazon S3
+        description: Bulk PDF and source distribution through Requester-Pays buckets.
+      - name: Kaggle
+        description: Periodically refreshed full metadata dataset.
+      - name: Model Context Protocol
+        description: Multiple community MCP servers expose arXiv search to AI assistants.
+  - type: Solutions
+    data:
+      - name: Query API
+        description: Programmatic search and metadata retrieval.
+      - name: OAI-PMH Harvest
+        description: Bulk metadata sync for downstream indexes.
+      - name: RSS Feeds
+        description: Daily new-submission feeds per archive or subject.
+      - name: Bulk Full-Text
+        description: S3 and Kaggle distributions for corpus-scale work.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

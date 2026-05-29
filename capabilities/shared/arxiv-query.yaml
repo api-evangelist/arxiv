@@ -1,0 +1,30 @@
+apiVersion: naftiko.dev/v1alpha1
+kind: Capability
+metadata:
+  name: arxiv-query
+  description: Shared capability surface for the arXiv Query API.
+  labels:
+    provider: arxiv
+    domain: scholarly-publishing
+spec:
+  source:
+    openapi: ../openapi/arxiv-query-openapi.yml
+  operations:
+    - id: queryArticles
+      summary: Query Articles
+      access: read
+      sensitivity: public
+    - id: queryArticlesPost
+      summary: Query Articles Via Post
+      access: read
+      sensitivity: public
+  policy:
+    rateLimit:
+      requestsPerSecond: 0.33
+      burst: 1
+      note: |
+        arXiv enforces no more than one request every three seconds across the
+        legacy query, OAI-PMH, and RSS APIs. Single connection at a time.
+    attribution:
+      required: true
+      text: "Thank you to arXiv for use of its open access interoperability."

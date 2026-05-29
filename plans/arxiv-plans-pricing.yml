@@ -1,0 +1,39 @@
+name: arXiv API Plans
+description: |
+  arXiv exposes its query, OAI-PMH, and RSS interfaces under a single open
+  access tier. There is no commercial pricing surface and no API key flow;
+  attribution and rate-limit etiquette are the only obligations.
+specification: api-commons-plans-0.1
+provider:
+  id: arxiv
+  name: arXiv
+  url: https://info.arxiv.org/help/api/index.html
+modified: '2026-05-29'
+plans:
+  - id: open-access
+    name: Open Access
+    pricing:
+      currency: USD
+      model: free
+      amount: 0
+    eligibility:
+      audience: anyone
+      signup: not-required
+      authentication: none
+    quotas:
+      requestsPerSecond: 0.33
+      maxResultsPerRequest: 2000
+      maxResultsPerQuery: 30000
+    obligations:
+      - attribution-required
+      - single-connection-at-a-time
+      - no-circumvention-of-rate-limits
+    notes: |
+      Higher-volume needs (sustained bulk harvest, full-text reuse) should be
+      satisfied via the OAI-PMH endpoint or the S3 bulk-data buckets rather
+      than the legacy query API. Contact arXiv (help@arxiv.org) for explicit
+      higher-rate approval.
+links:
+  termsOfService: https://info.arxiv.org/help/api/tou.html
+  bulkData: https://info.arxiv.org/help/bulk_data.html
+  contact: https://info.arxiv.org/help/contact.html

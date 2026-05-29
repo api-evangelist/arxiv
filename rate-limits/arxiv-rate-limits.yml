@@ -1,0 +1,59 @@
+name: arXiv Rate Limits
+description: |
+  Documented rate-limit and pacing policies for the arXiv public APIs.
+  Limits apply jointly across the legacy Query API, OAI-PMH, and RSS feeds.
+specification: api-commons-rate-limits-0.1
+provider:
+  id: arxiv
+  name: arXiv
+  url: https://info.arxiv.org/help/api/tou.html
+modified: '2026-05-29'
+policies:
+  - id: legacy-api-baseline
+    appliesTo:
+      - api: arxiv-query
+      - api: arxiv-oaipmh
+      - api: arxiv-rss
+    enforcement:
+      type: client-etiquette
+      mechanism: |
+        arXiv does not return granular rate-limit headers but actively
+        throttles or temporarily blocks clients that breach the documented
+        cadence. Honour the limits client-side.
+    limits:
+      - dimension: request-rate
+        max: 1
+        per: 3s
+        scope: per-client
+      - dimension: concurrency
+        max: 1
+        scope: per-client
+        note: Single connection at a time across all legacy APIs.
+    burst:
+      allowed: false
+      note: |
+        The bulk-data documentation alternately permits "bursts of 4 requests
+        per second with a 1 second sleep, per burst" for custom harvesting
+        against export.arxiv.org. The conservative one-per-three-seconds
+        guidance remains the safe default.
+    quotas:
+      - dimension: results-per-request
+        max: 2000
+        scope: per-query
+      - dimension: results-per-query
+        max: 30000
+        scope: per-query
+        note: Refine queries returning more than 1,000 results.
+  - id: bulk-harvest
+    appliesTo:
+      - api: arxiv-oaipmh
+    enforcement:
+      type: server-coordinated
+      mechanism: Use resumptionToken sequences to paginate large ListRecords / ListIdentifiers calls.
+    limits:
+      - dimension: harvest-window
+        note: |
+          Metadata refresh occurs ~10:30pm ET Sunday-Thursday; schedule
+          incremental harvests after the refresh and provide `from` (omit
+          `until`) to avoid duplicate downloads.
+contact: help@arxiv.org

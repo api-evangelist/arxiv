@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/draft/v0/schema",
+  "$id": "https://api-evangelist.github.io/arxiv/json-structure/arxiv-article-structure.json",
+  "name": "Article",
+  "type": "object",
+  "description": "JSON Structure representation of an arXiv Article entity.",
+  "properties": {
+    "id": { "type": "string", "description": "Canonical abstract URL" },
+    "arxiv_id": { "type": "string", "description": "Bare arXiv identifier" },
+    "title": { "type": "string" },
+    "summary": { "type": "string", "description": "Abstract text" },
+    "published": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "authors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "affiliation": { "type": "string" }
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "primary_category": { "type": "string" },
+    "comment": { "type": "string" },
+    "journal_ref": { "type": "string" },
+    "doi": { "type": "string" },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "href": { "type": "string" },
+          "rel": { "type": "string" },
+          "type": { "type": "string" },
+          "title": { "type": "string" }
+        }
+      }
+    },
+    "license": { "type": "string" }
+  },
+  "required": ["id", "title", "summary", "authors", "primary_category", "published"]
+}

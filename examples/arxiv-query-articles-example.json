@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI+AND+ti:transformer&start=0&max_results=2&sortBy=submittedDate&sortOrder=descending",
+    "headers": {
+      "Accept": "application/atom+xml",
+      "User-Agent": "api-evangelist-profile/1.0 (mailto:kin@apievangelist.com)"
+    }
+  },
+  "response": {
+    "status": 200,
+    "contentType": "application/atom+xml",
+    "feed": {
+      "title": "ArXiv Query: search_query=cat:cs.AI AND ti:transformer&start=0&max_results=2",
+      "id": "http://arxiv.org/api/query?search_query=cat:cs.AI+AND+ti:transformer",
+      "updated": "2026-05-29T00:00:00Z",
+      "totalResults": 4821,
+      "startIndex": 0,
+      "itemsPerPage": 2,
+      "entries": [
+        {
+          "id": "http://arxiv.org/abs/2505.09876v1",
+          "arxiv_id": "2505.09876v1",
+          "title": "Sparse Mixture-of-Experts Transformer for Long-Horizon Planning",
+          "summary": "We propose a sparse mixture-of-experts transformer architecture optimized for long-horizon planning tasks...",
+          "published": "2026-05-15T18:00:00Z",
+          "updated": "2026-05-15T18:00:00Z",
+          "authors": [
+            { "name": "Jane Q. Researcher", "affiliation": "MIT CSAIL" },
+            { "name": "Alex Example", "affiliation": "DeepMind" }
+          ],
+          "primary_category": "cs.AI",
+          "categories": ["cs.AI", "cs.LG"],
+          "links": [
+            { "href": "http://arxiv.org/abs/2505.09876v1", "rel": "alternate", "type": "text/html", "title": "abstract" },
+            { "href": "http://arxiv.org/pdf/2505.09876v1", "rel": "related", "type": "application/pdf", "title": "pdf" }
+          ]
+        },
+        {
+          "id": "http://arxiv.org/abs/2505.09333v2",
+          "arxiv_id": "2505.09333v2",
+          "title": "Compositional Reasoning in Vision-Language Transformers",
+          "summary": "We benchmark compositional generalization across leading vision-language transformer families...",
+          "published": "2026-05-13T09:14:21Z",
+          "updated": "2026-05-22T11:02:00Z",
+          "authors": [
+            { "name": "Pat Demo" },
+            { "name": "Sam Sample", "affiliation": "Stanford" }
+          ],
+          "primary_category": "cs.CV",
+          "categories": ["cs.CV", "cs.AI"],
+          "doi": "10.1000/example.2026.000123",
+          "links": [
+            { "href": "http://arxiv.org/abs/2505.09333v2", "rel": "alternate", "type": "text/html", "title": "abstract" },
+            { "href": "http://arxiv.org/pdf/2505.09333v2", "rel": "related", "type": "application/pdf", "title": "pdf" },
+            { "href": "http://dx.doi.org/10.1000/example.2026.000123", "rel": "related", "title": "doi" }
+          ]
+        }
+      ]
+    }
+  }
+}

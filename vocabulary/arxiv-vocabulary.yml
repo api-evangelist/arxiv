@@ -1,0 +1,105 @@
+name: arXiv Vocabulary
+description: |
+  Controlled vocabulary for the arXiv preprint repository: e-print metadata
+  fields, identifier formats, subject classification archives, and API
+  protocols exposed at export.arxiv.org and oaipmh.arxiv.org.
+url: https://api-evangelist.github.io/arxiv/vocabulary/arxiv-vocabulary.yml
+created: '2026-05-29'
+modified: '2026-05-29'
+terms:
+  entities:
+    - name: Article
+      description: A single e-print (preprint or postprint) hosted by arXiv.
+      aliases: [E-Print, Paper, Preprint]
+    - name: Author
+      description: A named author of an arXiv article, optionally with affiliation.
+    - name: Category
+      description: A subject classification assigned to an article (arXiv, ACM, or MSC).
+    - name: Set
+      description: An OAI-PMH set spec grouping articles by archive or subject.
+    - name: Version
+      description: A revision of an arXiv article, denoted by a `vN` suffix on the id.
+  fields:
+    - name: id
+      description: Canonical abstract URL `http://arxiv.org/abs/{arxiv_id}`.
+    - name: arxiv_id
+      description: Bare arXiv identifier (post-April-2007 format `YYMM.NNNNN` or legacy `archive/YYMMNNN`).
+    - name: title
+    - name: summary
+      description: Abstract text returned in the Atom feed `<summary>` element.
+    - name: published
+      description: Submission date of version 1.
+    - name: updated
+      description: Submission date of the retrieved version.
+    - name: primary_category
+      description: The primary subject classification (e.g. `cs.AI`).
+    - name: categories
+      description: All subject classifications attached to an article.
+    - name: comment
+      description: Author-supplied comment field (page counts, conference notes, etc.).
+    - name: journal_ref
+      description: Bibliographic reference for an associated published version.
+    - name: doi
+      description: DOI of the published version of record, when known.
+    - name: license
+      description: Declared license URL (OAI-PMH `arXiv` metadata format).
+  identifier-patterns:
+    - name: Modern Identifier
+      pattern: "^[0-9]{4}\\.[0-9]{4,5}(v[0-9]+)?$"
+      example: "2401.12345v2"
+      description: Format used since April 2007.
+    - name: Legacy Identifier
+      pattern: "^[a-z\\-]+/[0-9]{7}(v[0-9]+)?$"
+      example: "hep-th/9901001"
+      description: Pre-April-2007 format keyed on archive name.
+  archives:
+    - name: cs
+      description: Computer Science (further subdivided as cs.AI, cs.CL, cs.LG, etc.).
+    - name: math
+      description: Mathematics.
+    - name: physics
+      description: Physics (subdivided as hep-th, cond-mat, astro-ph, etc.).
+    - name: q-bio
+      description: Quantitative Biology.
+    - name: q-fin
+      description: Quantitative Finance.
+    - name: stat
+      description: Statistics.
+    - name: eess
+      description: Electrical Engineering and Systems Science.
+    - name: econ
+      description: Economics.
+  protocols:
+    - name: Query API
+      description: REST endpoint at `https://export.arxiv.org/api/query` returning Atom 1.0 XML.
+    - name: OAI-PMH
+      description: Bulk metadata harvesting at `https://oaipmh.arxiv.org/oai` (v2.0).
+    - name: RSS
+      description: Daily category RSS feeds intended primarily for human consumption.
+    - name: S3 Bulk
+      description: Full-text PDF and source bucket on Amazon S3 (Requester-Pays).
+    - name: Kaggle Dataset
+      description: Periodically refreshed full metadata dataset on Kaggle.
+  operators:
+    - name: AND
+    - name: OR
+    - name: ANDNOT
+  field-prefixes:
+    - name: ti
+      description: Title.
+    - name: au
+      description: Author.
+    - name: abs
+      description: Abstract.
+    - name: co
+      description: Comment.
+    - name: jr
+      description: Journal reference.
+    - name: cat
+      description: Subject category.
+    - name: rn
+      description: Report number.
+    - name: id
+      description: arXiv identifier (prefer the `id_list` parameter).
+    - name: all
+      description: All fields.

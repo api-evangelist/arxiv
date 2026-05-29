@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: arXiv Query API
+  description: |
+    Public REST API for searching and retrieving article metadata from arXiv.org,
+    the open-access e-print repository operated by Cornell Tech. Responses are
+    returned in Atom 1.0 XML with arXiv and OpenSearch extensions.
+
+    Rate limit: no more than one request every three seconds; limit to a single
+    connection at a time. Maximum 2,000 results per request, 30,000 results per
+    query in total.
+  version: '1.0'
+  contact:
+    name: arXiv API Support
+    url: https://info.arxiv.org/help/api/index.html
+    email: help@arxiv.org
+  license:
+    name: arXiv API Terms of Use (metadata under CC0 1.0)
+    url: https://info.arxiv.org/help/api/tou.html
+  termsOfService: https://info.arxiv.org/help/api/tou.html
+servers:
+  - url: https://export.arxiv.org
+    description: arXiv export host (production)
+tags:
+  - name: Query
+    description: Search and retrieve article metadata from arXiv.
+paths:
+  /api/query:
+    get:
+      operationId: queryArticles
+      summary: Query Articles
+      description: |
+        Execute a search query and/or ID lookup against arXiv. Supports field
+        prefixes (ti, au, abs, co, jr, cat, rn, id, all), boolean operators
+        (AND, OR, ANDNOT), phrase grouping, and date-range filters on
+        `submittedDate` and `lastUpdatedDate`. Responses are Atom 1.0 XML.
+      tags:
+        - Query
+      parameters:
+        - name: search_query
+          in: query
+          description: |
+            Search expression using field prefixes and boolean operators.
+            Example: `cat:cs.AI AND ti:transformer`.
+          required: false
+          schema:
+            type: string
+        - name: id_list
+          in: query
+          description: |
+            Comma-separated list of arXiv identifiers to retrieve. May be
+            combined with `search_query` to filter the named IDs by the query.
+          required: false
+          schema:
+            type: string
+        - name: start
+          in: query
+          description: Zero-based index of the first returned result.
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - name: max_results
+          in: query
+          description: Maximum number of results returned per request (max 2000).
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 2000
+        - name: sortBy
+          in: query
+          description: Field by which results are sorted.
+          required: false
+          schema:
+            type: string
+            enum:
+              - relevance
+              - lastUpdatedDate
+              - submittedDate
+            default: relevance
+        - name: sortOrder
+          in: query
+          description: Order in which sorted results are returned.
+          required: false
+          schema:
+            type: string
+            enum:
+              - ascending
+              - descending
+            default: descending
+      responses:
+        '200':
+          description: Atom feed of matching articles.
+          content:
+            application/atom+xml:
+              schema:
+                $ref: '#/components/schemas/AtomFeed'
+        '400':
+          description: Malformed query.
+          content:
+            application/atom+xml:
+              schema:
+                $ref: '#/components/schemas/AtomFeed'
+    post:
+      operationId: queryArticlesPost
+      summary: Query Articles Via Post
+      description: |
+        Equivalent to `GET /api/query` but accepts parameters as
+        `application/x-www-form-urlencoded` body data. Useful for very long
+        `id_list` or `search_query` values.
+      tags:
+        - Query
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                search_query:
+                  type: string
+                id_list:
+                  type: string
+                start:
+                  type: integer
+                  default: 0
+                max_results:
+                  type: integer
+                  default: 10
+                  maximum: 2000
+                sortBy:
+                  type: string
+                  enum:
+                    - relevance
+                    - lastUpdatedDate
+                    - submittedDate
+                sortOrder:
+                  type: string
+                  enum:
+                    - ascending
+                    - descending
+      responses:
+        '200':
+          description: Atom feed of matching articles.
+          content:
+            application/atom+xml:
+              schema:
+                $ref: '#/components/schemas/AtomFeed'
+components:
+  schemas:
+    AtomFeed:
+      type: object
+      description: Atom 1.0 feed wrapping arXiv search results.
+      properties:
+        title:
+          type: string
+          description: Canonicalised search query string.
+        id:
+          type: string
+          format: uri
+          description: Unique identifier for the query.
+        updated:
+          type: string
+          format: date-time
+        link:
+          type: string
+          format: uri
+          description: Self-referencing GET URL for the query.
+        totalResults:
+          type: integer
+          description: OpenSearch totalResults across the entire match set.
+        startIndex:
+          type: integer
+        itemsPerPage:
+          type: integer
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'
+    Article:
+      type: object
+      description: A single arXiv article entry from the Atom feed.
+      required:
+        - id
+        - title
+        - summary
+        - authors
+        - primary_category
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Canonical abstract URL (`http://arxiv.org/abs/{id}`).
+        title:
+          type: string
+        summary:
+          type: string
+          description: Abstract text.
+        published:
+          type: string
+          format: date-time
+          description: Submission date of version 1.
+        updated:
+          type: string
+          format: date-time
+          description: Submission date of the retrieved version.
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        categories:
+          type: array
+          description: arXiv / ACM / MSC subject classifications.
+          items:
+            type: string
+        primary_category:
+          type: string
+          description: Primary subject classification.
+        comment:
+          type: string
+          description: Author-supplied comments, if present.
+        journal_ref:
+          type: string
+          description: Bibliographic reference for an associated journal article.
+        doi:
+          type: string
+          description: DOI for the resolved version of record.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArticleLink'
+    Author:
+      type: object
+      properties:
+        name:
+          type: string
+        affiliation:
+          type: string
+    ArticleLink:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+          description: One of `abstract`, `pdf`, or `doi`.

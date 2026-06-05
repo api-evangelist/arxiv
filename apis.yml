@@ -1,13 +1,11 @@
 aid: arxiv
 name: arXiv
 description: >-
-  arXiv is the open-access e-print repository operated by Cornell Tech, hosting
-  more than two million preprints across physics, mathematics, computer science,
-  quantitative biology, quantitative finance, statistics, electrical
-  engineering, and economics. arXiv exposes two principal programmatic
-  interfaces: a REST Query API that returns Atom 1.0 XML and an OAI-PMH v2.0
-  endpoint for bulk metadata harvesting, plus daily RSS feeds and Amazon S3 /
-  Kaggle distributions for full-text corpora.
+  arXiv is the open-access e-print repository operated by Cornell Tech, hosting more than two million preprints across
+  physics, mathematics, computer science, quantitative biology, quantitative finance, statistics, electrical
+  engineering, and economics. arXiv exposes two principal programmatic interfaces: a REST Query API that returns Atom
+  1.0 XML and an OAI-PMH v2.0 endpoint for bulk metadata harvesting, plus daily RSS feeds and Amazon S3 / Kaggle
+  distributions for full-text corpora.
 url: https://info.arxiv.org/help/api/index.html
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -28,11 +26,9 @@ tags:
 apis:
   - name: arXiv Query API
     description: >-
-      REST endpoint for searching arXiv and retrieving article metadata.
-      Supports field-prefix queries (ti, au, abs, co, jr, cat, rn, id, all),
-      AND/OR/ANDNOT operators, phrase grouping, and date-range filters on
-      submittedDate and lastUpdatedDate. Responses are Atom 1.0 XML with
-      arXiv and OpenSearch extensions.
+      REST endpoint for searching arXiv and retrieving article metadata. Supports field-prefix queries (ti, au, abs, co,
+      jr, cat, rn, id, all), AND/OR/ANDNOT operators, phrase grouping, and date-range filters on submittedDate and
+      lastUpdatedDate. Responses are Atom 1.0 XML with arXiv and OpenSearch extensions.
     humanURL: https://info.arxiv.org/help/api/user-manual.html
     baseURL: https://export.arxiv.org/api/query
     tags:
@@ -61,11 +57,9 @@ apis:
         title: Python SDK (lukasschwab/arxiv.py)
   - name: arXiv OAI-PMH API
     description: >-
-      Open Archives Initiative Protocol for Metadata Harvesting v2.0 endpoint
-      for bulk-syncing arXiv metadata. Supports Identify, ListSets,
-      ListMetadataFormats, ListRecords, ListIdentifiers, and GetRecord with
-      oai_dc, arXiv, and arXivRaw metadata formats. Metadata refreshes ~10:30pm
-      ET Sunday-Thursday.
+      Open Archives Initiative Protocol for Metadata Harvesting v2.0 endpoint for bulk-syncing arXiv metadata. Supports
+      Identify, ListSets, ListMetadataFormats, ListRecords, ListIdentifiers, and GetRecord with oai_dc, arXiv, and
+      arXivRaw metadata formats. Metadata refreshes ~10:30pm ET Sunday-Thursday.
     humanURL: https://info.arxiv.org/help/oa/index.html
     baseURL: https://oaipmh.arxiv.org/oai
     tags:
@@ -81,9 +75,8 @@ apis:
         title: List Records Example
   - name: arXiv RSS Feeds
     description: >-
-      Daily RSS feeds of new arXiv submissions, organised by archive and
-      subject category. Primarily intended for human consumption; the OAI-PMH
-      and query APIs are recommended for machine integration.
+      Daily RSS feeds of new arXiv submissions, organised by archive and subject category. Primarily intended for human
+      consumption; the OAI-PMH and query APIs are recommended for machine integration.
     humanURL: https://info.arxiv.org/help/rss.html
     baseURL: https://rss.arxiv.org
     tags:
@@ -94,9 +87,8 @@ apis:
         url: https://info.arxiv.org/help/rss.html
   - name: arXiv Bulk Data
     description: >-
-      Full-text and source bulk distribution channels: an Amazon S3
-      Requester-Pays bucket containing every arXiv PDF and source archive, plus
-      a periodically refreshed Kaggle dataset of the complete metadata corpus.
+      Full-text and source bulk distribution channels: an Amazon S3 Requester-Pays bucket containing every arXiv PDF and
+      source archive, plus a periodically refreshed Kaggle dataset of the complete metadata corpus.
     humanURL: https://info.arxiv.org/help/bulk_data.html
     baseURL: https://info.arxiv.org/help/bulk_data_s3.html
     tags:
@@ -143,15 +135,6 @@ common:
   - type: JSONLD
     url: json-ld/arxiv-context.jsonld
     title: arXiv JSON-LD Context
-  - type: NaftikoCapability
-    url: capabilities/shared/arxiv-query.yaml
-    title: Query Capability
-  - type: NaftikoCapability
-    url: capabilities/shared/arxiv-oaipmh.yaml
-    title: OAI-PMH Capability
-  - type: NaftikoCapability
-    url: capabilities/research-discovery.yaml
-    title: Research Discovery Workflow
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
   - type: Tools

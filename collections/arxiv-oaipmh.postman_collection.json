@@ -1,0 +1,174 @@
+{
+  "item": [
+    {
+      "id": "7c4076b6-a3a8-46d8-be7d-a0f40df2539b",
+      "name": "OAI-PMH",
+      "description": {
+        "content": "OAI-PMH v2.0 verbs for metadata harvesting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42a00085-cbf5-40ff-84fb-ff3ae0090108",
+          "name": "Invoke An Oai-pmh Verb",
+          "request": {
+            "name": "Invoke An Oai-pmh Verb",
+            "description": {
+              "content": "Single OAI-PMH endpoint dispatched by the `verb` parameter. Supports\n`Identify`, `ListSets`, `ListMetadataFormats`, `ListRecords`,\n`ListIdentifiers`, and `GetRecord`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oai"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "verb",
+                  "value": "<string>",
+                  "description": "(Required) OAI-PMH verb to invoke."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>",
+                  "description": "OAI identifier (required for `GetRecord`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "metadataPrefix",
+                  "value": "<string>",
+                  "description": "Metadata format prefix (required for `ListRecords`, `ListIdentifiers`, `GetRecord`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Lower bound (UTCdatetime) for selective harvesting."
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<date>",
+                  "description": "Upper bound (UTCdatetime) for selective harvesting."
+                },
+                {
+                  "disabled": false,
+                  "key": "set",
+                  "value": "<string>",
+                  "description": "Set spec (e.g. `cs`, `cs:cs:AI`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "resumptionToken",
+                  "value": "<string>",
+                  "description": "Token returned by a previous list response to fetch the next batch."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89f9cf95-506e-456a-a62b-f4eec0727d56",
+              "name": "OAI-PMH XML response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oai"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verb",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metadataPrefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "until",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "set",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resumptionToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://oaipmh.arxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4cee8740-4aa1-4c65-b6f3-5759baeac6a9",
+    "name": "arXiv OAI-PMH API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH v2.0)\nendpoint for bulk-harvesting arXiv metadata. Recommended for large\nincremental syncs; metadata is refreshed roughly daily around 10:30pm ET\nSunday through Thursday.\n\nRate limit (shared with all arXiv legacy APIs): no more than one request\nevery three seconds, single connection at a time. Honour resumption tokens\nwhen iterating large set lists.\n\n\nContact Support:\n Name: arXiv API Support\n Email: help@arxiv.org",
+      "type": "text/plain"
+    }
+  }
+}

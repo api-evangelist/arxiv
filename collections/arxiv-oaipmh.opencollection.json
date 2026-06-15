@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "arXiv OAI-PMH API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAI-PMH",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke An Oai-pmh Verb",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://oaipmh.arxiv.org/oai",
+            "params": [
+              {
+                "name": "verb",
+                "value": "",
+                "type": "query",
+                "description": "OAI-PMH verb to invoke."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "OAI identifier (required for `GetRecord`)."
+              },
+              {
+                "name": "metadataPrefix",
+                "value": "",
+                "type": "query",
+                "description": "Metadata format prefix (required for `ListRecords`, `ListIdentifiers`, `GetRecord`)."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound (UTCdatetime) for selective harvesting."
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound (UTCdatetime) for selective harvesting."
+              },
+              {
+                "name": "set",
+                "value": "",
+                "type": "query",
+                "description": "Set spec (e.g. `cs`, `cs:cs:AI`)."
+              },
+              {
+                "name": "resumptionToken",
+                "value": "",
+                "type": "query",
+                "description": "Token returned by a previous list response to fetch the next batch."
+              }
+            ]
+          },
+          "docs": "Single OAI-PMH endpoint dispatched by the `verb` parameter. Supports\n`Identify`, `ListSets`, `ListMetadataFormats`, `ListRecords`,\n`ListIdentifiers`, and `GetRecord`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

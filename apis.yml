@@ -49,10 +49,10 @@ apis:
       - type: JSONStructure
         url: json-structure/arxiv-article-structure.json
         title: Article
-      - type: Example
+      - type: Examples
         url: examples/arxiv-query-articles-example.json
         title: Query Articles Example
-      - type: SDK
+      - type: SDKs
         url: https://pypi.org/project/arxiv/
         title: Python SDK (lukasschwab/arxiv.py)
   - name: arXiv OAI-PMH API
@@ -70,7 +70,7 @@ apis:
         url: https://info.arxiv.org/help/oa/index.html
       - type: OpenAPI
         url: openapi/arxiv-oaipmh-openapi.yml
-      - type: Example
+      - type: Examples
         url: examples/arxiv-oaipmh-listrecords-example.json
         title: List Records Example
   - name: arXiv RSS Feeds
@@ -152,10 +152,10 @@ common:
   - type: Tools
     url: https://github.com/kelvingao/arxiv-mcp
     title: arXiv MCP (kelvingao)
-  - type: SDK
+  - type: SDKs
     url: https://pypi.org/project/arxiv/
     title: arxiv Python wrapper (lukasschwab/arxiv.py)
-  - type: SDK
+  - type: SDKs
     url: https://github.com/titipata/arxivpy
     title: arxivpy Python client (titipata/arxivpy)
   - type: GitHubRepository

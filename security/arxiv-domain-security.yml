@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: arxiv.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jul 27 05:26:48 2026 GMT
+  hsts: false
+- host: info.arxiv.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  1 15:51:33 2026 GMT
+  hsts: false
+- host: export.arxiv.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jul 27 05:26:48 2026 GMT
+  hsts: true
+  hsts_max_age: 300
+domains:
+- domain: arxiv.org
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

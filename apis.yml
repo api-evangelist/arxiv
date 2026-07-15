@@ -104,6 +104,8 @@ apis:
         url: https://www.kaggle.com/datasets/Cornell-University/arxiv
         title: Kaggle arXiv Dataset
 common:
+  - type: AgenticAccess
+    url: agentic-access/arxiv-agentic-access.yml
   - type: DomainSecurity
     url: security/arxiv-domain-security.yml
   - type: Website

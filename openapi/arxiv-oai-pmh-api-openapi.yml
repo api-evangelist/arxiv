@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: arXiv OAI-PMH API
+  description: 'Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH v2.0)
+
+    endpoint for bulk-harvesting arXiv metadata. Recommended for large
+
+    incremental syncs; metadata is refreshed roughly daily around 10:30pm ET
+
+    Sunday through Thursday.
+
+
+    Rate limit (shared with all arXiv legacy APIs): no more than one request
+
+    every three seconds, single connection at a time. Honour resumption tokens
+
+    when iterating large set lists.
+
+    '
+  version: '2.0'
+  contact:
+    name: arXiv API Support
+    url: https://info.arxiv.org/help/oa/index.html
+    email: help@arxiv.org
+  license:
+    name: Metadata CC0 1.0 (e-prints under individual copyright)
+    url: https://info.arxiv.org/help/api/tou.html
+  termsOfService: https://info.arxiv.org/help/api/tou.html
+servers:
+- url: https://oaipmh.arxiv.org
+  description: Primary OAI-PMH host (March 2025+)
+tags:
+- name: OAI-PMH
+  description: OAI-PMH v2.0 verbs for metadata harvesting.
+paths:
+  /oai:
+    get:
+      operationId: oaiVerb
+      summary: Invoke An Oai-pmh Verb
+      description: 'Single OAI-PMH endpoint dispatched by the `verb` parameter. Supports
+
+        `Identify`, `ListSets`, `ListMetadataFormats`, `ListRecords`,
+
+        `ListIdentifiers`, and `GetRecord`.
+
+        '
+      tags:
+      - OAI-PMH
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: OAI-PMH verb to invoke.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListSets
+          - ListMetadataFormats
+          - ListRecords
+          - ListIdentifiers
+          - GetRecord
+      - name: identifier
+        in: query
+        description: OAI identifier (required for `GetRecord`).
+        schema:
+          type: string
+      - name: metadataPrefix
+        in: query
+        description: Metadata format prefix (required for `ListRecords`, `ListIdentifiers`, `GetRecord`).
+        schema:
+          type: string
+          enum:
+          - oai_dc
+          - arXiv
+          - arXivRaw
+      - name: from
+        in: query
+        description: Lower bound (UTCdatetime) for selective harvesting.
+        schema:
+          type: string
+          format: date
+      - name: until
+        in: query
+        description: Upper bound (UTCdatetime) for selective harvesting.
+        schema:
+          type: string
+          format: date
+      - name: set
+        in: query
+        description: Set spec (e.g. `cs`, `cs:cs:AI`).
+        schema:
+          type: string
+      - name: resumptionToken
+        in: query
+        description: Token returned by a previous list response to fetch the next batch.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OAI-PMH XML response.
+          content:
+            text/xml:
+              schema:
+                type: string

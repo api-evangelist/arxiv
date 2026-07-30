@@ -1,4 +1,17 @@
 aid: arxiv
+accessModel:
+  pricing: free
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arxiv.png
 name: arXiv
 description: >-
   arXiv is the open-access e-print repository operated by Cornell Tech, hosting more than two million preprints across
@@ -24,85 +37,93 @@ tags:
   - Open Source
   - Public APIs
 apis:
-  - name: arXiv Query API
-    description: >-
-      REST endpoint for searching arXiv and retrieving article metadata. Supports field-prefix queries (ti, au, abs, co,
-      jr, cat, rn, id, all), AND/OR/ANDNOT operators, phrase grouping, and date-range filters on submittedDate and
-      lastUpdatedDate. Responses are Atom 1.0 XML with arXiv and OpenSearch extensions.
-    humanURL: https://info.arxiv.org/help/api/user-manual.html
-    baseURL: https://export.arxiv.org/api/query
-    tags:
-      - Science And Math
-      - Scholarly Publishing
-    properties:
-      - type: Documentation
-        url: https://info.arxiv.org/help/api/user-manual.html
-      - type: APIReference
-        url: https://info.arxiv.org/help/api/user-manual.html#_calling_the_api
-      - type: GettingStarted
-        url: https://info.arxiv.org/help/api/basics.html
-      - type: OpenAPI
-        url: openapi/arxiv-query-openapi.yml
-      - type: JSONSchema
-        url: json-schema/arxiv-article-schema.json
-        title: Article
-      - type: JSONStructure
-        url: json-structure/arxiv-article-structure.json
-        title: Article
-      - type: Examples
-        url: examples/arxiv-query-articles-example.json
-        title: Query Articles Example
-      - type: SDKs
-        url: https://pypi.org/project/arxiv/
-        title: Python SDK (lukasschwab/arxiv.py)
-  - name: arXiv OAI-PMH API
-    description: >-
-      Open Archives Initiative Protocol for Metadata Harvesting v2.0 endpoint for bulk-syncing arXiv metadata. Supports
-      Identify, ListSets, ListMetadataFormats, ListRecords, ListIdentifiers, and GetRecord with oai_dc, arXiv, and
-      arXivRaw metadata formats. Metadata refreshes ~10:30pm ET Sunday-Thursday.
-    humanURL: https://info.arxiv.org/help/oa/index.html
-    baseURL: https://oaipmh.arxiv.org/oai
-    tags:
-      - Scholarly Publishing
-      - Bulk Data
-    properties:
-      - type: Documentation
-        url: https://info.arxiv.org/help/oa/index.html
-      - type: OpenAPI
-        url: openapi/arxiv-oaipmh-openapi.yml
-      - type: Examples
-        url: examples/arxiv-oaipmh-listrecords-example.json
-        title: List Records Example
-  - name: arXiv RSS Feeds
-    description: >-
-      Daily RSS feeds of new arXiv submissions, organised by archive and subject category. Primarily intended for human
-      consumption; the OAI-PMH and query APIs are recommended for machine integration.
-    humanURL: https://info.arxiv.org/help/rss.html
-    baseURL: https://rss.arxiv.org
-    tags:
-      - Scholarly Publishing
-      - Feeds
-    properties:
-      - type: Documentation
-        url: https://info.arxiv.org/help/rss.html
-  - name: arXiv Bulk Data
-    description: >-
-      Full-text and source bulk distribution channels: an Amazon S3 Requester-Pays bucket containing every arXiv PDF and
-      source archive, plus a periodically refreshed Kaggle dataset of the complete metadata corpus.
-    humanURL: https://info.arxiv.org/help/bulk_data.html
-    baseURL: https://info.arxiv.org/help/bulk_data_s3.html
-    tags:
-      - Bulk Data
-      - Open Data
-    properties:
-      - type: Documentation
-        url: https://info.arxiv.org/help/bulk_data.html
-      - type: Resources
-        url: https://info.arxiv.org/help/bulk_data_s3.html
-        title: Amazon S3 Bulk Buckets
-      - type: Resources
-        url: https://www.kaggle.com/datasets/Cornell-University/arxiv
-        title: Kaggle arXiv Dataset
+- name: arXiv RSS Feeds
+  description: >-
+    Daily RSS feeds of new arXiv submissions, organised by archive and subject category. Primarily intended
+    for human consumption; the OAI-PMH and query APIs are recommended for machine integration.
+  humanURL: https://info.arxiv.org/help/rss.html
+  baseURL: https://rss.arxiv.org
+  tags:
+  - Scholarly Publishing
+  - Feeds
+  properties:
+  - type: Documentation
+    url: https://info.arxiv.org/help/rss.html
+- name: arXiv Bulk Data
+  description: >-
+    Full-text and source bulk distribution channels: an Amazon S3 Requester-Pays bucket containing every
+    arXiv PDF and source archive, plus a periodically refreshed Kaggle dataset of the complete metadata
+    corpus.
+  humanURL: https://info.arxiv.org/help/bulk_data.html
+  baseURL: https://info.arxiv.org/help/bulk_data_s3.html
+  tags:
+  - Bulk Data
+  - Open Data
+  properties:
+  - type: Documentation
+    url: https://info.arxiv.org/help/bulk_data.html
+  - type: Resources
+    url: https://info.arxiv.org/help/bulk_data_s3.html
+    title: Amazon S3 Bulk Buckets
+  - type: Resources
+    url: https://www.kaggle.com/datasets/Cornell-University/arxiv
+    title: Kaggle arXiv Dataset
+- aid: arxiv:arxiv-oai-pmh-api
+  name: arXiv OAI-PMH API
+  description: OAI-PMH v2.0 verbs for metadata harvesting.
+  humanURL: https://info.arxiv.org/help/api/user-manual.html
+  baseURL: https://export.arxiv.org/api/query
+  tags:
+  - OAI-PMH
+  properties:
+  - type: OpenAPI
+    url: openapi/arxiv-oai-pmh-api-openapi.yml
+  - type: Documentation
+    url: https://info.arxiv.org/help/api/user-manual.html
+  - type: APIReference
+    url: https://info.arxiv.org/help/api/user-manual.html#_calling_the_api
+  - type: GettingStarted
+    url: https://info.arxiv.org/help/api/basics.html
+  - type: JSONSchema
+    url: json-schema/arxiv-article-schema.json
+  - type: JSONStructure
+    url: json-structure/arxiv-article-structure.json
+  - type: Examples
+    url: examples/arxiv-query-articles-example.json
+  - type: SDKs
+    url: https://pypi.org/project/arxiv/
+  - type: Documentation
+    url: https://info.arxiv.org/help/oa/index.html
+  - type: Examples
+    url: examples/arxiv-oaipmh-listrecords-example.json
+- aid: arxiv:arxiv-query-api
+  name: arXiv Query API
+  description: Search and retrieve article metadata from arXiv.
+  humanURL: https://info.arxiv.org/help/api/user-manual.html
+  baseURL: https://export.arxiv.org/api/query
+  tags:
+  - Query
+  properties:
+  - type: OpenAPI
+    url: openapi/arxiv-query-api-openapi.yml
+  - type: Documentation
+    url: https://info.arxiv.org/help/api/user-manual.html
+  - type: APIReference
+    url: https://info.arxiv.org/help/api/user-manual.html#_calling_the_api
+  - type: GettingStarted
+    url: https://info.arxiv.org/help/api/basics.html
+  - type: JSONSchema
+    url: json-schema/arxiv-article-schema.json
+  - type: JSONStructure
+    url: json-structure/arxiv-article-structure.json
+  - type: Examples
+    url: examples/arxiv-query-articles-example.json
+  - type: SDKs
+    url: https://pypi.org/project/arxiv/
+  - type: Documentation
+    url: https://info.arxiv.org/help/oa/index.html
+  - type: Examples
+    url: examples/arxiv-oaipmh-listrecords-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/arxiv-agentic-access.yml

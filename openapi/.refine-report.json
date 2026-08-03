@@ -1,0 +1,16 @@
+{
+  "provider": "arxiv",
+  "sources": [
+    "arxiv-oai-pmh-api-openapi.yml",
+    "arxiv-query-api-openapi.yml"
+  ],
+  "outputs": [
+    "arxiv-oai-pmh-api-openapi.yml",
+    "arxiv-query-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

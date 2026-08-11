@@ -125,6 +125,14 @@ apis:
   - type: Examples
     url: examples/arxiv-oaipmh-listrecords-example.json
 common:
+  - type: IssueTracker
+    url: https://github.com/arXiv/arxiv-search/issues
+  - type: Releases
+    url: https://github.com/arXiv/arxiv-search/releases
+  - type: CodeOfConduct
+    url: https://github.com/arXiv/.github/blob/master/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/arXiv/.github/blob/master/CONTRIBUTING.md
   - type: AgenticAccess
     url: agentic-access/arxiv-agentic-access.yml
   - type: DomainSecurity

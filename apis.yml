@@ -20,7 +20,7 @@ description: >-
   1.0 XML and an OAI-PMH v2.0 endpoint for bulk metadata harvesting, plus daily RSS feeds and Amazon S3 / Kaggle
   distributions for full-text corpora.
 url: https://info.arxiv.org/help/api/index.html
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-05-29'
 x-source: public-apis/public-apis

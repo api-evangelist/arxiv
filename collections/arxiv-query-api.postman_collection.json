@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "64711242-bcaa-4ccd-bf3e-ba6c7666ba18",
+      "name": "Query",
+      "description": {
+        "content": "Search and retrieve article metadata from arXiv.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b123de8c-38d5-4c6b-a4fe-642cce9c8dae",
+          "name": "Query Articles",
+          "request": {
+            "name": "Query Articles",
+            "description": {
+              "content": "Execute a search query and/or ID lookup against arXiv. Supports field\nprefixes (ti, au, abs, co, jr, cat, rn, id, all), boolean operators\n(AND, OR, ANDNOT), phrase grouping, and date-range filters on\n`submittedDate` and `lastUpdatedDate`. Responses are Atom 1.0 XML.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search_query",
+                  "value": "<string>",
+                  "description": "Search expression using field prefixes and boolean operators.\nExample: `cat:cs.AI AND ti:transformer`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "id_list",
+                  "value": "<string>",
+                  "description": "Comma-separated list of arXiv identifiers to retrieve. May be\ncombined with `search_query` to filter the named IDs by the query.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0",
+                  "description": "Zero-based index of the first returned result."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_results",
+                  "value": "10",
+                  "description": "Maximum number of results returned per request (max 2000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "relevance",
+                  "description": "Field by which results are sorted."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "descending",
+                  "description": "Order in which sorted results are returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/atom+xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1664647-3c47-4479-8ce5-1a0943a3f2e3",
+              "name": "Atom feed of matching articles.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "max_results",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "relevance"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "descending"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/atom+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/atom+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <title>(string)</title>\n  <id>(string)</id>\n  <updated>(string)</updated>\n  <link>(string)</link>\n  <totalResults>(integer)</totalResults>\n  <startIndex>(integer)</startIndex>\n  <itemsPerPage>(integer)</itemsPerPage>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "4c8bdec7-ae71-4686-8683-abfe8197e9f9",
+              "name": "Malformed query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search_query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "key": "max_results",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "relevance"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "descending"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/atom+xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/atom+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <title>(string)</title>\n  <id>(string)</id>\n  <updated>(string)</updated>\n  <link>(string)</link>\n  <totalResults>(integer)</totalResults>\n  <startIndex>(integer)</startIndex>\n  <itemsPerPage>(integer)</itemsPerPage>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e3f3c2f-9eda-4371-a323-37de4aaa3c4d",
+          "name": "Query Articles Via Post",
+          "request": {
+            "name": "Query Articles Via Post",
+            "description": {
+              "content": "Equivalent to `GET /api/query` but accepts parameters as\n`application/x-www-form-urlencoded` body data. Useful for very long\n`id_list` or `search_query` values.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/atom+xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "search_query",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id_list",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_results",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a140b8e7-b4c2-4399-9228-1cd941a6c089",
+              "name": "Atom feed of matching articles.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/atom+xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "search_query",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "id_list",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "start",
+                      "value": "0"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "max_results",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/atom+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <title>(string)</title>\n  <id>(string)</id>\n  <updated>(string)</updated>\n  <link>(string)</link>\n  <totalResults>(integer)</totalResults>\n  <startIndex>(integer)</startIndex>\n  <itemsPerPage>(integer)</itemsPerPage>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n  <entries>\n    <id>(string)</id>\n    <title>(string)</title>\n    <summary>(string)</summary>\n    <published>(string)</published>\n    <updated>(string)</updated>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <authors>\n      <name>(string)</name>\n      <affiliation>(string)</affiliation>\n    </authors>\n    <categories>(string)</categories>\n    <categories>(string)</categories>\n    <primary_category>(string)</primary_category>\n    <comment>(string)</comment>\n    <journal_ref>(string)</journal_ref>\n    <doi>(string)</doi>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n    <links>\n      <href>(string)</href>\n      <rel>(string)</rel>\n      <type>(string)</type>\n      <title>(string)</title>\n    </links>\n  </entries>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://oaipmh.arxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c779959b-0880-435d-829f-4aedccb9f3bf",
+    "name": "arXiv OAI-PMH Query API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH v2.0)\nendpoint for bulk-harvesting arXiv metadata. Recommended for large\nincremental syncs; metadata is refreshed roughly daily around 10:30pm ET\nSunday through Thursday.\n\nRate limit (shared with all arXiv legacy APIs): no more than one request\nevery three seconds, single connection at a time. Honour resumption tokens\nwhen iterating large set lists.\n\n\nContact Support:\n Name: arXiv API Support\n Email: help@arxiv.org",
+      "type": "text/plain"
+    }
+  }
+}

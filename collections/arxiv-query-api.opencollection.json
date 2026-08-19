@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "arXiv OAI-PMH Query API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Articles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://oaipmh.arxiv.org/api/query",
+            "params": [
+              {
+                "name": "search_query",
+                "value": "",
+                "type": "query",
+                "description": "Search expression using field prefixes and boolean operators.\nExample: `cat:cs.AI AND ti:transformer`.\n"
+              },
+              {
+                "name": "id_list",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of arXiv identifiers to retrieve. May be\ncombined with `search_query` to filter the named IDs by the query.\n"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based index of the first returned result."
+              },
+              {
+                "name": "max_results",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results returned per request (max 2000)."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field by which results are sorted."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Order in which sorted results are returned."
+              }
+            ]
+          },
+          "docs": "Execute a search query and/or ID lookup against arXiv. Supports field\nprefixes (ti, au, abs, co, jr, cat, rn, id, all), boolean operators\n(AND, OR, ANDNOT), phrase grouping, and date-range filters on\n`submittedDate` and `lastUpdatedDate`. Responses are Atom 1.0 XML.\n"
+        },
+        {
+          "info": {
+            "name": "Query Articles Via Post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://oaipmh.arxiv.org/api/query",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "search_query",
+                  "value": ""
+                },
+                {
+                  "name": "id_list",
+                  "value": ""
+                },
+                {
+                  "name": "start",
+                  "value": ""
+                },
+                {
+                  "name": "max_results",
+                  "value": ""
+                },
+                {
+                  "name": "sortBy",
+                  "value": ""
+                },
+                {
+                  "name": "sortOrder",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Equivalent to `GET /api/query` but accepts parameters as\n`application/x-www-form-urlencoded` body data. Useful for very long\n`id_list` or `search_query` values.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

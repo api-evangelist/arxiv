@@ -1,34 +1,32 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: arXiv OAI-PMH Query API
-  description: 'Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH v2.0)
+  title: arXiv Query API
+  description: 'Public REST API for searching and retrieving article metadata from arXiv.org,
 
-    endpoint for bulk-harvesting arXiv metadata. Recommended for large
+    the open-access e-print repository operated by Cornell Tech. Responses are
 
-    incremental syncs; metadata is refreshed roughly daily around 10:30pm ET
-
-    Sunday through Thursday.
+    returned in Atom 1.0 XML with arXiv and OpenSearch extensions.
 
 
-    Rate limit (shared with all arXiv legacy APIs): no more than one request
+    Rate limit: no more than one request every three seconds; limit to a single
 
-    every three seconds, single connection at a time. Honour resumption tokens
+    connection at a time. Maximum 2,000 results per request, 30,000 results per
 
-    when iterating large set lists.
+    query in total.
 
     '
-  version: '2.0'
+  version: '1.0'
   contact:
     name: arXiv API Support
-    url: https://info.arxiv.org/help/oa/index.html
+    url: https://info.arxiv.org/help/api/index.html
     email: help@arxiv.org
   license:
-    name: Metadata CC0 1.0 (e-prints under individual copyright)
+    name: arXiv API Terms of Use (metadata under CC0 1.0)
     url: https://info.arxiv.org/help/api/tou.html
   termsOfService: https://info.arxiv.org/help/api/tou.html
 servers:
-- url: https://oaipmh.arxiv.org
-  description: Primary OAI-PMH host (March 2025+)
+- url: https://export.arxiv.org
+  description: arXiv export host (production)
 tags:
 - name: Query
   description: Search and retrieve article metadata from arXiv.
@@ -170,6 +168,26 @@ paths:
                 $ref: '#/components/schemas/AtomFeed'
 components:
   schemas:
+    Author:
+      type: object
+      properties:
+        name:
+          type: string
+        affiliation:
+          type: string
+    ArticleLink:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+          description: One of `abstract`, `pdf`, or `doi`.
     AtomFeed:
       type: object
       description: Atom 1.0 feed wrapping arXiv search results.
@@ -199,19 +217,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Article'
-    ArticleLink:
-      type: object
-      properties:
-        href:
-          type: string
-          format: uri
-        rel:
-          type: string
-        type:
-          type: string
-        title:
-          type: string
-          description: One of `abstract`, `pdf`, or `doi`.
     Article:
       type: object
       description: A single arXiv article entry from the Atom feed.
@@ -264,10 +269,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ArticleLink'
-    Author:
-      type: object
-      properties:
-        name:
-          type: string
-        affiliation:
-          type: string

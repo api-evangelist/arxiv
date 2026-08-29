@@ -1,8 +1,8 @@
 {
   "provider": "arxiv",
   "sources": [
-    "arxiv-oai-pmh-api-openapi.yml",
-    "arxiv-query-api-openapi.yml"
+    "_original/arxiv-oaipmh-openapi.yml",
+    "_original/arxiv-query-openapi.yml"
   ],
   "outputs": [
     "arxiv-oai-pmh-api-openapi.yml",
@@ -11,6 +11,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "arxiv-oaipmh-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "arxiv-query-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "arxiv-oai-pmh-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "arxiv-query-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

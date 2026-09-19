@@ -66,6 +66,9 @@ apis:
   baseURL: https://rss.arxiv.org
   tags:
   - Scholarly Publishing
+  - Feed
+  tags_raw:
+  - Scholarly Publishing
   - Feeds
   properties:
   - type: Documentation

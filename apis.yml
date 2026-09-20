@@ -41,6 +41,9 @@ x-type: opensource
 x-category: Science & Math
 x-tier: 1
 x-tier-reason: Cornell-operated open scholarship infrastructure with multiple long-lived public APIs.
+x-docs-platform: mkdocs
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-19
 tags:
   - Science And Math
   - Scholarly Publishing

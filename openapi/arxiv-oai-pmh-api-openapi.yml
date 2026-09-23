@@ -14,9 +14,7 @@ info:
 
     every three seconds, single connection at a time. Honour resumption tokens
 
-    when iterating large set lists.
-
-    '
+    when iterating large set lists.'
   version: '2.0'
   contact:
     name: arXiv API Support
@@ -30,7 +28,7 @@ servers:
 - url: https://oaipmh.arxiv.org
   description: Primary OAI-PMH host (March 2025+)
 tags:
-- name: OAI-PMH
+- name: oai pmh
   description: OAI-PMH v2.0 verbs for metadata harvesting.
 paths:
   /oai:
@@ -41,11 +39,9 @@ paths:
 
         `Identify`, `ListSets`, `ListMetadataFormats`, `ListRecords`,
 
-        `ListIdentifiers`, and `GetRecord`.
-
-        '
+        `ListIdentifiers`, and `GetRecord`.'
       tags:
-      - OAI-PMH
+      - oai pmh
       parameters:
       - name: verb
         in: query

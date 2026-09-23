@@ -12,9 +12,7 @@ info:
 
     connection at a time. Maximum 2,000 results per request, 30,000 results per
 
-    query in total.
-
-    '
+    query in total.'
   version: '1.0'
   contact:
     name: arXiv API Support
@@ -41,9 +39,7 @@ paths:
 
         (AND, OR, ANDNOT), phrase grouping, and date-range filters on
 
-        `submittedDate` and `lastUpdatedDate`. Responses are Atom 1.0 XML.
-
-        '
+        `submittedDate` and `lastUpdatedDate`. Responses are Atom 1.0 XML.'
       tags:
       - Query
       parameters:
@@ -125,9 +121,7 @@ paths:
 
         `application/x-www-form-urlencoded` body data. Useful for very long
 
-        `id_list` or `search_query` values.
-
-        '
+        `id_list` or `search_query` values.'
       tags:
       - Query
       requestBody:
@@ -168,55 +162,6 @@ paths:
                 $ref: '#/components/schemas/AtomFeed'
 components:
   schemas:
-    Author:
-      type: object
-      properties:
-        name:
-          type: string
-        affiliation:
-          type: string
-    ArticleLink:
-      type: object
-      properties:
-        href:
-          type: string
-          format: uri
-        rel:
-          type: string
-        type:
-          type: string
-        title:
-          type: string
-          description: One of `abstract`, `pdf`, or `doi`.
-    AtomFeed:
-      type: object
-      description: Atom 1.0 feed wrapping arXiv search results.
-      properties:
-        title:
-          type: string
-          description: Canonicalised search query string.
-        id:
-          type: string
-          format: uri
-          description: Unique identifier for the query.
-        updated:
-          type: string
-          format: date-time
-        link:
-          type: string
-          format: uri
-          description: Self-referencing GET URL for the query.
-        totalResults:
-          type: integer
-          description: OpenSearch totalResults across the entire match set.
-        startIndex:
-          type: integer
-        itemsPerPage:
-          type: integer
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Article'
     Article:
       type: object
       description: A single arXiv article entry from the Atom feed.
@@ -269,3 +214,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ArticleLink'
+    Author:
+      type: object
+      properties:
+        name:
+          type: string
+        affiliation:
+          type: string
+    ArticleLink:
+      type: object
+      properties:
+        href:
+          type: string
+          format: uri
+        rel:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+          description: One of `abstract`, `pdf`, or `doi`.
+    AtomFeed:
+      type: object
+      description: Atom 1.0 feed wrapping arXiv search results.
+      properties:
+        title:
+          type: string
+          description: Canonicalised search query string.
+        id:
+          type: string
+          format: uri
+          description: Unique identifier for the query.
+        updated:
+          type: string
+          format: date-time
+        link:
+          type: string
+          format: uri
+          description: Self-referencing GET URL for the query.
+        totalResults:
+          type: integer
+          description: OpenSearch totalResults across the entire match set.
+        startIndex:
+          type: integer
+        itemsPerPage:
+          type: integer
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Article'

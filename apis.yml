@@ -1,16 +1,22 @@
 aid: arxiv
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - arxiv/arxiv-canonical
+    - arxiv/arxiv-feed
+    - arxiv/arxiv-search
+    - arxiv/oaipmh
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -50,8 +56,11 @@ tags:
   - Preprints
   - Open Access
   - Research
-  - Open-Source
+  - Open Source
   - Public APIs
+  - Research Data
+  - OAI-PMH
+  - Research Repository
 tags_raw:
   - Science And Math
   - Scholarly Publishing
@@ -60,6 +69,10 @@ tags_raw:
   - Research
   - Open Source
   - Public APIs
+  - Open-Source
+  - Research Data
+  - OAI-PMH
+  - Research Repository
 apis:
 - name: arXiv RSS Feeds
   description: >-
@@ -98,8 +111,8 @@ apis:
 - aid: arxiv:arxiv-oai-pmh-api
   name: arXiv OAI-PMH API
   description: OAI-PMH v2.0 verbs for metadata harvesting.
-  humanURL: https://info.arxiv.org/help/api/user-manual.html
-  baseURL: https://export.arxiv.org/api/query
+  humanURL: https://info.arxiv.org/help/oa/index.html
+  baseURL: https://oaipmh.arxiv.org/oai
   tags:
   - OAI-PMH
   properties:

@@ -51,7 +51,6 @@ x-docs-platform: mkdocs
 x-docs-platform-confidence: medium
 x-docs-platform-checked: 2026-09-19
 tags:
-  - Science And Math
   - Scholarly Publishing
   - Preprints
   - Open Access
@@ -61,8 +60,8 @@ tags:
   - Research Data
   - OAI-PMH
   - Research Repository
+  - Science
 tags_raw:
-  - Science And Math
   - Scholarly Publishing
   - Preprints
   - Open Access
@@ -73,6 +72,7 @@ tags_raw:
   - Research Data
   - OAI-PMH
   - Research Repository
+  - Science
 apis:
 - name: arXiv RSS Feeds
   description: >-
@@ -304,3 +304,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-tags-removed:
+- Science And Math

@@ -1,4 +1,4 @@
-# arXiv (arxiv)
+# arXiv
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,147 +66,159 @@
 
 arXiv is the open-access e-print repository operated by Cornell Tech, hosting more than two million preprints across physics, mathematics, computer science, quantitative biology, quantitative finance, statistics, electrical engineering, and economics. arXiv exposes two principal programmatic interfaces: a REST Query API that returns Atom 1.0 XML and an OAI-PMH v2.0 endpoint for bulk metadata harvesting, plus daily RSS feeds and Amazon S3 / Kaggle distributions for full-text corpora.
 
-**APIs.json:** [https://info.arxiv.org/help/api/index.html](https://info.arxiv.org/help/api/index.html)
+**Areas:** Scholarly Publishing · Preprints · Open Access · Research · Open Source · Public APIs · Research Data · OAI-PMH · Research Repository · Science
 
-## Tags
+## arXiv on APIs.io
 
-- Science And Math
-- Scholarly Publishing
-- Preprints
-- Open Access
-- Research
-- Open Source
-- Public APIs
+Everything profiled for arXiv is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/arxiv/](https://apis.io/providers/arxiv/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-29
+- [arXiv RSS Feeds](https://apis.io/apis/arxiv/arxiv-rss-feeds/) — Daily RSS feeds of new arXiv submissions, organised by archive and subject category. Primarily intended for human consumption; the OAI-PMH and query APIs…
+- [arXiv Bulk Data](https://apis.io/apis/arxiv/arxiv-bulk-data/) — Full-text and source bulk distribution channels: an Amazon S3 Requester-Pays bucket containing every arXiv PDF and source archive, plus a periodically…
+- [arXiv OAI-PMH API](https://apis.io/apis/arxiv/arxiv-oai-pmh-api/) — OAI-PMH v2.0 verbs for metadata harvesting.
+- [arXiv Query API](https://apis.io/apis/arxiv/arxiv-query-api/) — Search and retrieve article metadata from arXiv.
 
-## APIs
+### Published properties
 
-### arXiv Query API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST endpoint for searching arXiv and retrieving article metadata. Supports field-prefix queries (ti, au, abs, co, jr, cat, rn, id, all), AND/OR/ANDNOT operators, phrase grouping, and date-range filters on submittedDate and lastUpdatedDate. Responses are Atom 1.0 XML with arXiv and OpenSearch extensions.
+#### Agentic access (1)
 
-- **Human URL:** [https://info.arxiv.org/help/api/user-manual.html](https://info.arxiv.org/help/api/user-manual.html)
-- **Base URL:** `https://export.arxiv.org/api/query`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Arxiv Agentic Access](https://apis.io/agentic-access/arxiv/arxiv-agentic-access/)
 
-- Science And Math
-- Scholarly Publishing
+#### JSON Schema (1)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://info.arxiv.org/help/api/user-manual.html)
-- [API Reference](https://info.arxiv.org/help/api/user-manual.html#_calling_the_api)
-- [Getting Started](https://info.arxiv.org/help/api/basics.html)
-- [OpenAPI](openapi/arxiv-query-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/arxiv-query.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-query.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/arxiv-article-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/arxiv-article-structure.json)
-- [Example](examples/arxiv-query-articles-example.json)
-- [SDK](https://pypi.org/project/arxiv/)
+- [Article](https://apis.io/schemas/arxiv/arxiv-article/)
 
-### arXiv OAI-PMH API
+#### JSON Structure (1)
 
-Open Archives Initiative Protocol for Metadata Harvesting v2.0 endpoint for bulk-syncing arXiv metadata. Supports Identify, ListSets, ListMetadataFormats, ListRecords, ListIdentifiers, and GetRecord with oai_dc, arXiv, and arXivRaw metadata formats. Metadata refreshes ~10:30pm ET Sunday-Thursday.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://info.arxiv.org/help/oa/index.html](https://info.arxiv.org/help/oa/index.html)
-- **Base URL:** `https://oaipmh.arxiv.org/oai`
+- [Arxiv Article Structure](https://apis.io/json-structure/arxiv/arxiv-article-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Scholarly Publishing
-- Bulk Data
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Arxiv Context](https://apis.io/jsonld/arxiv/arxiv-context/)
 
-- [Documentation](https://info.arxiv.org/help/oa/index.html)
-- [OpenAPI](openapi/arxiv-oaipmh-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/arxiv-oaipmh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-oaipmh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Example](examples/arxiv-oaipmh-listrecords-example.json)
+#### Vocabulary (1)
 
-### arXiv RSS Feeds
+The provider's domain terms, defined.
 
-Daily RSS feeds of new arXiv submissions, organised by archive and subject category. Primarily intended for human consumption; the OAI-PMH and query APIs are recommended for machine integration.
+- [arXiv Vocabulary](https://apis.io/vocabularies/arxiv/arxiv-vocabulary/)
 
-- **Human URL:** [https://info.arxiv.org/help/rss.html](https://info.arxiv.org/help/rss.html)
-- **Base URL:** `https://rss.arxiv.org`
+#### Examples (2)
 
-#### Tags
+Example requests and responses.
 
-- Scholarly Publishing
-- Feeds
+- [Arxiv Oaipmh Listrecords Example](https://apis.io/examples/arxiv/arxiv-oaipmh-listrecords-example/)
+- [Arxiv Query Articles Example](https://apis.io/examples/arxiv/arxiv-query-articles-example/)
 
-#### Properties
+#### Collections (4)
 
-- [Documentation](https://info.arxiv.org/help/rss.html)
-- [Postman Collection](collections/arxiv-oaipmh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-oaipmh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/arxiv-query.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-query.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### arXiv Bulk Data
+- [arXiv OAI-PMH API](https://apis.io/collections/arxiv/open-arxiv-oai-pmh-api/)
+- [arXiv OAI-PMH API](https://apis.io/collections/arxiv/open-arxiv-oaipmh/)
+- [arXiv Query API](https://apis.io/collections/arxiv/open-arxiv-query/)
+- [arXiv OAI-PMH Query API](https://apis.io/collections/arxiv/open-arxiv-query-api/)
 
-Full-text and source bulk distribution channels: an Amazon S3 Requester-Pays bucket containing every arXiv PDF and source archive, plus a periodically refreshed Kaggle dataset of the complete metadata corpus.
+#### Governance rules (2)
 
-- **Human URL:** [https://info.arxiv.org/help/bulk_data.html](https://info.arxiv.org/help/bulk_data.html)
-- **Base URL:** `https://info.arxiv.org/help/bulk_data_s3.html`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [arXiv — jsonschema rules](https://apis.io/rules/arxiv/arxiv-jsonschema-spectral-rules/)
+- [arXiv API Rules](https://apis.io/rules/arxiv/arxiv-rules/)
 
-- Bulk Data
-- Open Data
+#### Security (1)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://info.arxiv.org/help/bulk_data.html)
-- [Resources](https://info.arxiv.org/help/bulk_data_s3.html)
-- [Resources](https://www.kaggle.com/datasets/Cornell-University/arxiv)
-- [Postman Collection](collections/arxiv-oaipmh.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-oaipmh.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/arxiv-query.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/arxiv-query.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Arxiv Domain Security](https://apis.io/security/arxiv/arxiv-domain-security/)
 
-## Common Properties
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Arxiv Plans Pricing](https://apis.io/plans/arxiv/arxiv-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Arxiv Rate Limits](https://apis.io/rate-limits/arxiv/arxiv-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://arxiv.org)
-- [Developer Portal](https://info.arxiv.org/help/api/index.html)
 - [Documentation](https://info.arxiv.org/help/api/user-manual.html)
-- [Terms of Service](https://info.arxiv.org/help/api/tou.html)
-- [Privacy Policy](https://info.arxiv.org/help/policies/privacy_policy.html)
-- [Status Page](https://status.arxiv.org/)
-- [Blog](https://blog.arxiv.org/)
 - [Support](https://info.arxiv.org/help/contact.html)
-- [GitHub Organization](https://github.com/arXiv)
 - [Changelog](https://github.com/arXiv/arxiv-docs/commits/develop)
-- [Plans](plans/arxiv-plans-pricing.yml)
-- [Rate Limits](rate-limits/arxiv-rate-limits.yml)
-- [Spectral Rules](rules/arxiv-rules.yml)
-- [Vocabulary](vocabulary/arxiv-vocabulary.yml)
-- [JSON-LD](json-ld/arxiv-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Public APIs Listing](https://github.com/public-apis/public-apis)
-- [Tools](https://github.com/blazickjp/arxiv-mcp-server)
-- [Tools](https://github.com/shoumikdc/arXiv-mcp)
-- [Tools](https://github.com/Tejas242/arxiv-mcp)
-- [Tools](https://github.com/glaforge/arxiv-mcp-server)
-- [Tools](https://github.com/kelvingao/arxiv-mcp)
-- [SDK](https://pypi.org/project/arxiv/)
-- [SDK](https://github.com/titipata/arxivpy)
-- [GitHub Repository](https://github.com/arXiv/arxiv-search)
-- [GitHub Repository](https://github.com/arXiv/oaipmh)
-- [GitHub Repository](https://github.com/arXiv/arxiv-feed)
-- [GitHub Repository](https://github.com/arXiv/arxiv-canonical)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Blog](https://blog.arxiv.org/)
+- [Terms of service](https://info.arxiv.org/help/api/tou.html)
+- [Privacy policy](https://info.arxiv.org/help/policies/privacy_policy.html)
+- [GitHub](https://github.com/arXiv)
+- [Status](https://status.arxiv.org/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 45.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 58.4 |
+| Contract governance | 27.3 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 26.3 |
+
+**Agent readiness 21.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 18.6** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/arxiv/](https://apis.io/providers/arxiv/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for arXiv: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/arxiv/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
